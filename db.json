@@ -1,14 +1,8 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "sentences:" : 
+  [
+      "The quick brown fox jumped over the lazy dog.",
+      "Money can be exchanged for goods and services.",
+      "It was the best of times, it was the worst of times."
+  ]
 }
