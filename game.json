@@ -246,9 +246,8 @@
         "name": "assets\\Roboto-Regular.ttf",
         "userAdded": true
       },
-
       {
-        "disablePreload" : false,
+        "disablePreload": false,
         "file": "assets/sentences.json",
         "kind": "json",
         "metadata": "",
@@ -260,7 +259,19 @@
   },
   "objects": [],
   "objectsGroups": [],
-  "variables": [],
+  "variables": [
+    {
+      "name": "corpus",
+      "type": "array",
+      "children": [
+        {
+          "folded": true,
+          "type": "string",
+          "value": "0"
+        }
+      ]
+    }
+  ],
   "layouts": [
     {
       "b": 149,
@@ -273,7 +284,7 @@
       "title": "",
       "v": 133,
       "uiSettings": {
-        "grid": true,
+        "grid": false,
         "gridType": "rectangular",
         "gridWidth": 16,
         "gridHeight": 16,
@@ -281,8 +292,8 @@
         "gridOffsetY": 0,
         "gridColor": 10401023,
         "gridAlpha": 0.8,
-        "snap": true,
-        "zoomFactor": 1.104,
+        "snap": false,
+        "zoomFactor": 1.084,
         "windowMask": false
       },
       "objectsGroups": [
@@ -293,29 +304,16 @@
       ],
       "variables": [
         {
-          "name": "first_card_id",
+          "folded": true,
+          "name": "temp",
           "type": "string",
-          "value": "0"
+          "value": ""
         },
         {
-          "name": "num_selected",
+          "folded": true,
+          "name": "sentence",
           "type": "string",
-          "value": "0"
-        },
-        {
-          "name": "second_card_id",
-          "type": "string",
-          "value": "0"
-        },
-        {
-          "name": "pairs_earned",
-          "type": "string",
-          "value": "0"
-        },
-        {
-          "name": "game_state",
-          "type": "string",
-          "value": "player_turn"
+          "value": ""
         }
       ],
       "instances": [
@@ -466,7 +464,14 @@
           "tags": "",
           "type": "TextObject::Text",
           "underlined": false,
-          "variables": [],
+          "variables": [
+            {
+              "folded": true,
+              "name": "corpus",
+              "type": "string",
+              "value": ""
+            }
+          ],
           "effects": [],
           "behaviors": [],
           "string": "The quick brown ___ jumped over the lazy dog.",
@@ -640,7 +645,7 @@
                   "parameters": [
                     "Input",
                     "=",
-                    "InputEntry.String()"
+                    "VariableString(sentence)"
                   ]
                 }
               ]
@@ -683,6 +688,54 @@
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
           "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "DepartScene"
+                  },
+                  "parameters": [
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "await": true,
+                    "value": "SendAsyncRequest"
+                  },
+                  "parameters": [
+                    "\"my-json-server.typicode.com/EonWasTaken/CS374\"",
+                    "\"/profile\"",
+                    "\"GET\"",
+                    "",
+                    "temp",
+                    "sentence"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "JSONToVariableStructure"
+                  },
+                  "parameters": [
+                    "VariableString(temp)",
+                    "sentence"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ModVarGlobalTxt"
+                  },
+                  "parameters": [
+                    "Question",
+                    "=",
+                    "VariableString(sentence)"
+                  ]
+                }
+              ]
+            },
             {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
