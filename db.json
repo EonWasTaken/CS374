@@ -1,8 +1,11 @@
 {
-  "sentences:" : 
-  [
-      "The quick brown fox jumped over the lazy dog.",
-      "Money can be exchanged for goods and services.",
-      "It was the best of times, it was the worst of times."
-  ]
+  "posts": [
+    {
+      "id": 1,
+      "title": "hello"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
